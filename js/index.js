@@ -13,6 +13,11 @@ Object.keys(links).forEach(e => {
     canonical.push(e)
 });
 
+// canonical.forEach((e) => {
+
+
+//     childs.push(links[e])
+// })
 
 const newChildArr = childsArr.filter(function(elem, pos) {
     return childsArr.indexOf(elem) == pos;
@@ -23,48 +28,24 @@ newChildArr.forEach((e) => {
     thead.append(th)
     th.text(e)
 })
-// for (const [a, b] of Object.entries(canonical)) {
-//     for (const [key, value] of Object.entries(links)) {
-//         if (key === b) {
-//             const tr = $('<tr></tr>'); 
-//             tbody.append(tr)
-//             for (const [k, v] of Object.entries(value)) {
-//                 const td = $('<td></td>');
-//                 if (newChildArr.indexOf(k)) {
-//                     tr.append(td)
-//                     td.text(v)
-//                 } else if (key === b) {
-//                     td.text(b)
-//                 } else {
-//                     tr.append(td)
-//                     td.text('')
-//                 }
-//             }
-//         }
-        
-//     }
-// }
-canonical.forEach((e)=> {
+
+for (const [key, value] of Object.entries(links)) {
     const tr = $('<tr></tr>'); 
     const td = $('<td></td>');
     tbody.append(tr)
     tr.append(td)
-    td.text(e)
-})
-
-
-for (let i = 0; i < $('tr').length - 1; i++) {
-    var m = $(`tr:nth-child(${i + 1}) td`).text()
-    var childArr = links[m]
-    var n = Object.keys(childArr).length
-    for (let k = 0; k < n; k++) {
-        console.log(k);
-        var childVal = $(`thead tr th:nth-child(${k + 1})`).text()
-        console.log(childsArr);
-        if (childsArr.indexOf(childVal) != -1) {
-            $(`tr:nth-child(${i})`).append(`<td>${childArr[childVal]}</td>`)
+    td.text(key)
+    for (const [k, v] of Object.entries(value)) {
+        
+        if (key.indexOf(k)) {
+            console.log(v);
+            const td = $('<td></td>');
+            tr.append(td)
+            td.text(v)
         } else {
-            $(`tr:nth-child(${i})`).append(`<td></td>`)
+            const td = $('<td></td>');
+            tr.append(td)
+            td.text('')
         }
     }
 }
